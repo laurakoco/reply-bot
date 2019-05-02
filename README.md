@@ -193,13 +193,13 @@ classes_dict["whats up"]["pattern"] = ["sup", "what's up", "what up", "whats up"
 
 We tokenize, stem, and sort these patterns to create an a bag of words array. We have 42 known words in our corpus:
 
-```
+```python
 my_words = ["'s", 'afternoon', 'ar', 'bye', 'can', 'day', 'do', 'doing', 'ev', 'go', 'going', 'good', 'goodby', 'got', 'hap', 'hav', 'hello', 'hey', 'hi', 'how', 'i', 'is', 'it', 'lat', 'morn', "n't", 'on', 'see', 'should', 'sup', 'ta', 'talk', 'thank', 'ther', 'to', 'up', 'what', 'when', 'wil', 'would', 'ya', 'you']
 ```
 
 Likewise, we need to create a sorted array for our output classes:
 
-```
+```python
 my_classes = ['are you', 'future', 'goodbye', 'greeting', 'how are you', 'thanks', 'whats up', 'when']
 ```
 
@@ -226,18 +226,6 @@ Since this belongs to the ‘how are you’ class, we append the output as
 
 ```python
 output_row = [0, 0, 0, 0, 1, 0, 0, 0]
-```
-
-For the pattern ‘how are you doing' the input to the NN is
-
-```
-[0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
-```
-
-The output for this is
-
-```
-[0, 0, 0, 0, 1, 0, 0, 0]
 ```
 
 The architecture of our NN is simple, as can be seen below. We have only 2 hidden layers.
@@ -292,6 +280,13 @@ def classify(user_input):
         return_list.append((my_classes[filtered_results[i][0]], filtered_results[i][1]))
                 
     return return_list # return tuple of intent and probability
+
+some_array = classify(user_input)
+
+if len(some_array) != 0:
+
+    for response in classes_dict[some_array[0][0]]["response"]:
+        print "* " + response
 ```
 
 ## Usage
@@ -334,4 +329,5 @@ To quit, type quit
 * MET CS 664 Artificial Intelligence
 
 [1] https://medium.com/analytics-vidhya/building-a-simple-chatbot-in-python-using-nltk-7c8c8215ac6e
+
 [2] https://chatbotsmagazine.com/contextual-chat-bots-with-tensorflow-4391749d0077 
