@@ -160,18 +160,18 @@ The class with the highest similarity to the user input is chosen and the class 
 error_threshold = 0.1
 if(req_tfidf < error_threshold):
 
-robo_response = ["[No Suggestion]"]
-return robo_response
+    robo_response = ["[No Suggestion]"]
 
 else:
 
-for value in sent_tokens:
-match_pattern = sent_tokens_[idx]
-pattern = sent_tokens[value]
-if match_pattern == pattern:
-match_class = value
+    for value in sent_tokens:
+        match_pattern = sent_tokens_[idx]
+        pattern = sent_tokens[value]
+        if match_pattern == pattern:
+            match_class = value
 
-robo_response = my_dict[match_class]['response']
+    robo_response = my_dict[match_class]['response']
+
 ```
 
 ### Machine Learning-Based Bot
@@ -205,36 +205,44 @@ my_classes = ['are you', 'future', 'goodbye', 'greeting', 'how are you', 'thanks
 
 We now can create our training data. Let’s use the ‘how are you’ class as an example.
 
+```python
 classes_dict["how are you"]["pattern"] = ["how are you", "how are you doing", "how's it going"]
+```
+
 In this class, one pattern is ‘how are you doing.’ We can tokenize and stem this into a list:
 
-```
+```python
 my_pattern = ['how', 'ar', 'you', 'doing']
 ```
 
 We then create an input training list by appending a 1 in indices where a my_pattern word is found in our list of known words (my_words) and appending a 0 otherwise. For the pattern ‘how are you doing,’ we append bag with a 1 in positions ‘ar’ ‘doing’, ‘how,’ and ‘you’:
 
-```
+```python
 bag = [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 
 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
 ```
 
 Since this belongs to the ‘how are you’ class, we append the output as
 
-```
+```python
 output_row = [0, 0, 0, 0, 1, 0, 0, 0]
 ```
 
-Our training data for this pattern is:
+For the pattern ‘how are you doing' the input to the NN is
 
 ```
-Input: [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
-Output: [0, 0, 0, 0, 1, 0, 0, 0]
+[0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+```
+
+The output for this is
+
+```
+[0, 0, 0, 0, 1, 0, 0, 0]
 ```
 
 The architecture of our NN is simple, as can be seen below. We have only 2 hidden layers.
 
-<img src="images/nn.jpg" width="600">
+<img src="images/nn.jpg" width="1000">
 
 We train this for 1,000 epochs; this actually trains quite fast. It takes less than 30 seconds to train completely.
 
