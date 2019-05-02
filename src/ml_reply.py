@@ -119,7 +119,7 @@ def bag(user_input):
             if input_word == bag_word:
                 bag[i] = 1
 
-return(np.array(bag))
+    return(np.array(bag))
 
 error_threshold = 0.95
 
@@ -134,12 +134,12 @@ def classify(user_input):
         if this_result > error_threshold:
             filtered_results.append([i, this_result])
 
-filtered_results.sort(key = lambda x: x[1], reverse = True)
+    filtered_results.sort(key = lambda x: x[1], reverse = True)
 
-return_list = []
+    return_list = []
 
-for i in range(0, len(filtered_results)):
-    return_list.append((my_classes[filtered_results[i][0]], filtered_results[i][1]))
+    for i in range(0, len(filtered_results)):
+        return_list.append((my_classes[filtered_results[i][0]], filtered_results[i][1]))
     
     return return_list # return tuple of intent and probability
 
@@ -151,8 +151,8 @@ while flag:
     
     user_input = raw_input('>>> ').lower() # get input and convert to lowercase
     
-    if not re.search('quit', user_input):
-        
+    if(user_input != "quit"):
+
         some_array = []
         
         some_array = classify(user_input)
@@ -172,7 +172,6 @@ while flag:
             
             print "[No Suggestion]"
 
-else:
+    else:
     
-    flag = False
-
+        flag = False

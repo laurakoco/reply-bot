@@ -44,9 +44,9 @@ def my_response(my_dict, user_input, sent_tokens):
     flat = vals.flatten()
     flat.sort()
     req_tfidf = flat[-2]
-    print req_tfidf
+    # print req_tfidf
 
-    error_threshold = 0.5
+    error_threshold = 0.1
     if(req_tfidf < error_threshold):
 
         robo_response = ["[No Suggestion]"]
@@ -60,7 +60,7 @@ def my_response(my_dict, user_input, sent_tokens):
             if match_pattern == pattern:
                 match_class = value
 
-        print match_class
+        # print match_class
         robo_response = my_dict[match_class]['response']
         return robo_response
 
