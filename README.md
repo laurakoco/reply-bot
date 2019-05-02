@@ -319,6 +319,10 @@ To quit, type quit
 >>> quit
 ```
 
+## Thoughts
+
+It's obvious that no one type of reply bot works best. A retrieval-based bot performs poorly for casual conversation and works better for factual queries. For casual conversation, a hybrid implementation (rule-based and machine-learning based) may work best.
+
 ## Author
 
 **Laura Kocubinski** [laurakoco](https://github.com/laurakoco)
