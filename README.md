@@ -329,7 +329,7 @@ It's obvious that no one type of reply bot works best. A retrieval-based bot per
 
 ## Acknowledgments
 
-* Boston University MET Master Science Computer Science Program
+* Boston University MET Master of Science Computer Science Program
 * MET CS 664 Artificial Intelligence
 
 [1] https://medium.com/analytics-vidhya/building-a-simple-chatbot-in-python-using-nltk-7c8c8215ac6e
